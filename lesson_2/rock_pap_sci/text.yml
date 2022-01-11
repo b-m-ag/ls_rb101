@@ -1,0 +1,9 @@
+welcome: "Welcome to rock, paper, scissors, lizard, spock!!"
+game_rules: "First to 3 wins!"
+request_user_choice: "Please choose your weapon of choice. Use the full word or 1st letter (2 letters for scissors/spock
+Example - type 'r' to select rock"
+user_invalid_choice: "Sorry, please try again"
+player_wins: "Player wins!!"
+cpu_wins: "Computer wins!!"
+play_again?: "Would you like to play again?"
+goodbye: "Thank you for playing. Goodbye!"
