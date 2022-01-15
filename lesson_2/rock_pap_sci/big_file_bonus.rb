@@ -3,20 +3,15 @@ MESSAGES = YAML.load_file('text.yml')
 
 # --- Constant Def. (Start) --- #
 NEW_LINE = "\n"
-VALID_CHOICES = {
-	'r' => 'rock',
-	'p' => 'paper',
-	'sc' => 'scissors',
-	'l' => 'lizard',
-	'sp' =>'spock' #abbrevation expand
-}
+VALID_CHOICES = %w(r rock p paper sc scissors l lizard sp spock)
+
 VALID_CPU_CHOICES = %w(rock paper scissors lizard spock)
 RULES = {
-	'rock' => ['lizard', 'scissors'],
-	'paper' => ['rock', 'spock'],
-	'scissors' => ['paper', 'lizard'],
-	'lizard' => ['spock', 'paper'],
-	'spock' => ['scissors', 'rock'],
+  'rock': ['scissors', 'lizard'],
+  'paper': ['rock', 'spock'],
+  'scissors': ['paper', 'lizard'],
+  'spock': ['scissors', 'rock'],
+  'lizard': ['spock', 'paper']
 }
 WINNING_SCORE = 3
 VALID_YES = ['y', 'yes']
@@ -51,8 +46,15 @@ def abrreviation_expand(inp)
 	when 'sp'
 		inp = 'spock'
 	end
-	
 	inp
+end
+
+def to_extend?(choice)
+	if choice.length < 3
+		abrreviation_expand(choice)
+	else
+		choice
+	end
 end
 
 def approve_user_choice
@@ -60,10 +62,8 @@ def approve_user_choice
 	loop do
 		prompt(MESSAGES['request_user_choice'])
 		input = gets.chomp.downcase.strip
-		if VALID_CHOICES.include?(input) #checks keys (which are abbreviated)
-			input = abrreviation_expand(input)
-			break
-		elsif VALID_CHOICES.has_value?(input) #checks values, which aren't abbreviated
+		if VALID_CHOICES.include?(input)
+			input = to_extend?(input)
 			break
 		else
 			prompt(MESSAGES['user_invalid_choice'])
@@ -81,7 +81,8 @@ def print_game_num(total_g)
 end
 
 def print_scores(scores)
-  prompt("Player score: #{scores[:player]}. Computer score: #{scores[:computer]}")
+	prompt("Player score: #{scores[:player]}.")
+	prompt("Computer score: #{scores[:computer]}")
 end
 
 def referee?(first, second)
@@ -146,7 +147,7 @@ welcome_screen
 
 loop do # Initialize game count and score variables
 	scores = { player: 0, computer: 0, tie: 0 }
-  games = [1]
+	games = [1]
 
 	loop do # Actual game until WINNING_SCORE
 		print_game_num(games[0])
@@ -155,24 +156,23 @@ loop do # Initialize game count and score variables
 		cpu_move = get_cpu_choice
 
 		winner = winner(user_move, cpu_move)
-    display_results(user_move, cpu_move, winner)
+		display_results(user_move, cpu_move, winner)
 
 		update_scores(scores, winner)
 		sleep 2
 
-    break if game_won?(scores)
+		break if game_won?(scores)
 
 		clear_screen
 		print_scores(scores)
-    next_game(games)
-    NEW_LINE
+		next_game(games)
+		NEW_LINE
 	end
 
 	print_game_winner(scores)
 
 	break unless play_again?
-  clear_screen
-
+	clear_screen
 end
 
 clear_screen
