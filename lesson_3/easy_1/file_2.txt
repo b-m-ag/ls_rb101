@@ -1,0 +1,7 @@
+They are simply used as part of a method, exclusively at the end.
+1 - != means not equals
+2 - turns it into the opposite of user_name, the boolean opposite that is
+3 - It would call the uniq method on words. It mutates because of the !
+4 - it could be used as a ternary operator
+5 - it depends on the method
+6 - it would be turned into its boolean equivalent
