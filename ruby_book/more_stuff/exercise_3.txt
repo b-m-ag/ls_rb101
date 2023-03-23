@@ -1,0 +1,1 @@
+It deals with errors in a manageable and predictable way. If a user enters bad information or a file-manipulating process gets corrupted, your program needs to know what to do when it runs into these exceptional conditions. Ruby's exception handling makes handling errors much easier

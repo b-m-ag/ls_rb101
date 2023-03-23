@@ -1,0 +1,2 @@
+Array values are accessed by index, non-customizable. Hash values are accessed by keys which can be different types.
+In older versions of Ruby, hashes didn't keep their order. Due to the nature of index values, arrays have always been in order

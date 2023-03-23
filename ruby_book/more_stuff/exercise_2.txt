@@ -1,0 +1,1 @@
+Nothing, and it returns a Proc object

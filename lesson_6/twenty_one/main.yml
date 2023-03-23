@@ -1,0 +1,9 @@
+welcome: >-
+  Welcome to twenty-one! 
+  The goal of twenty-one is to try to get as close to twenty-one(21) as possible, without going over. 
+  If you do, it's a "bust" and you lose
+rules: >-
+  As a reminder, here is a chart of card values:
+    2-10 are worth their face value
+    Jack, Queen, King are all worth 10
+    Ace is worth 1 or 11
